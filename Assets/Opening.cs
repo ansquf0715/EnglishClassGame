@@ -6,11 +6,11 @@ using TMPro;
 
 public class Opening : MonoBehaviour
 {
-    public GameObject waterPerson;
-    public GameObject guide;
-    public GameObject raccoon1;
-    public GameObject raccoon2;
-    public GameObject raccoon3;
+    public Sprite backSprite;
+    Button ruleButton;
+    Button playButton;
+    public List<GameObject> backObjects = new List<GameObject>();
+
     public GameObject logo;
     public GameObject appleMan;
     public GameObject blackMan;
@@ -22,19 +22,27 @@ public class Opening : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Opening object started");
+        GameObject backgroundObject = GameObject.Find("BackGround");
+        SpriteRenderer spriteRenderer = backgroundObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = backSprite;
 
-        instantiatedObjects.Add(Instantiate(waterPerson, new Vector2(-2.4f, 0.4f), Quaternion.identity));
-        instantiatedObjects.Add(Instantiate(guide, new Vector2(-5.6f, -1f), Quaternion.identity));
-        instantiatedObjects.Add(Instantiate(raccoon1, new Vector2(-1.8f, -1f), Quaternion.identity));
-        instantiatedObjects.Add(Instantiate(raccoon2, new Vector2(1.6f, -1f), Quaternion.identity));
-        instantiatedObjects.Add(Instantiate(raccoon3, new Vector2(5.8f, -1.1f), Quaternion.identity));
+        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        foreach(Transform child in canvas.transform)
+        {
+            Button button = child.GetComponent<Button>();
+            if (child.name == "HowToPlayButton")
+                ruleButton = button;
+            else if (child.name == "PlayButton")
+                playButton = button;
+        }
+        ruleButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(true);
 
-        //Instantiate(waterPerson, new Vector2(-2.4f, 0.4f), Quaternion.identity);
-        //Instantiate(guide, new Vector2(-5.6f, -1f), Quaternion.identity);
-        //Instantiate(raccoon1, new Vector2(-1.8f, -1f), Quaternion.identity);
-        //Instantiate(raccoon2, new Vector2(1.6f, -1f), Quaternion.identity);
-        //Instantiate(raccoon3, new Vector2(5.8f, -1.1f), Quaternion.identity);
+        instantiatedObjects.Add(Instantiate(backObjects[0], new Vector2(-2.4f, 0.4f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(backObjects[1], new Vector2(-5.6f, -1f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(backObjects[2], new Vector2(-1.8f, -1f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(backObjects[3], new Vector2(1.6f, -1f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(backObjects[4], new Vector2(5.8f, -1.1f), Quaternion.identity));
 
         // create & move apple man
         GameObject appleManInstance = Instantiate(appleMan, new Vector2(-10f, 0f), Quaternion.identity);
@@ -50,7 +58,6 @@ public class Opening : MonoBehaviour
         instantiatedObjects.Add(logoInstance);
         StartCoroutine(MoveObject(logoInstance, new Vector2(0f, 2.5f), 2f));
 
-        //Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         wordLottoText = GameObject.Find("WordLotto").GetComponent<TMP_Text>();
         wordLottoText.text = "";
         StartCoroutine(TypeText(wordLottoText, "WORD LOTTO!"));
@@ -82,7 +89,6 @@ public class Opening : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         string displayText = textToType;
-        //textObj.text = "";
         foreach(char c in displayText)
         {
             textObj.text += c;
@@ -106,5 +112,9 @@ public class Opening : MonoBehaviour
                 Destroy(obj);
         }
         instantiatedObjects.Clear();
+
+        ruleButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(false);
+        wordLottoText.gameObject.SetActive(false);
     }
 }

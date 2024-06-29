@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &48193192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8406398205123115869, guid: 00c9585e2efdf994bb86e7a0d6218bf1, type: 3}
+      - m_Target: {fileID: 8883967412973462473, guid: 00c9585e2efdf994bb86e7a0d6218bf1, type: 3}
         m_TargetAssemblyTypeName: Opening, Assembly-CSharp
         m_MethodName: PlayButtonClicked
         m_Mode: 1
@@ -1050,7 +1050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1326551182
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_round: 0
   roundPrefabs:
-  - {fileID: 8406398205123115866, guid: 00c9585e2efdf994bb86e7a0d6218bf1, type: 3}
+  - {fileID: 8883967412973462472, guid: 00c9585e2efdf994bb86e7a0d6218bf1, type: 3}
   - {fileID: 3225600819090021509, guid: b4ded647ca9d94242bc2718d45246b57, type: 3}
 --- !u!1 &1879687907
 GameObject:
@@ -1260,7 +1260,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 894d45f4bc33e6340829e49c37cb59ed, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1268,7 +1268,7 @@ SpriteRenderer:
   m_Size: {x: 9.59, y: 5.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1879687909
