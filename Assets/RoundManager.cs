@@ -9,25 +9,30 @@ public class RoundManager : MonoBehaviour
     public int current_round = 0;
 
     public List<GameObject> roundPrefabs = new List<GameObject>();
-    //public GameObject openingPrefab;
-    //public GameObject round1Prefab;
+
+    public GameObject rulePrefab;
+    public AudioClip ruleClip;
 
     List<GameObject> roundObj = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        if (current_round == 0)
-            StartOpening();
-        else if (current_round == 1)
-            StartRound1();
+        changeRound();
     }
 
     // Update is called once per frame
     void Update()
     {
+        changeRound();
+    }
+
+    void changeRound()
+    {
         if (current_round == 0)
             StartOpening();
+        else if (current_round == -2)
+            StartRule();
         else if (current_round == 1)
             StartRound1();
     }
@@ -44,25 +49,20 @@ public class RoundManager : MonoBehaviour
     void StartOpening()
     {
         DestroyCurrentObject();
-        //if (openingPrefab != null)
-        //{
-        //    //Instantiate(openingPrefab, transform.position, Quaternion.identity);
-        //    roundObj.Add(Instantiate(openingPrefab, transform.position, Quaternion.identity));
-        //    current_round = -1;
-        //}
         roundObj.Add(Instantiate(roundPrefabs[0], transform.position, Quaternion.identity));
+        current_round = -1;
+    }
+
+    void StartRule()
+    {
+        DestroyCurrentObject();
+        roundObj.Add(Instantiate(rulePrefab, transform.position, Quaternion.identity));
         current_round = -1;
     }
 
     void StartRound1()
     {
         DestroyCurrentObject();
-        //if (round1Prefab != null)
-        //{
-        //    roundObj.Add(Instantiate(round1Prefab, transform.position, Quaternion.identity));
-        //    //Instantiate(round1Prefab, transform.position, Quaternion.identity);
-        //    current_round = -1;
-        //}
         roundObj.Add(Instantiate(roundPrefabs[1], transform.position, Quaternion.identity));
         current_round = -1;
     }

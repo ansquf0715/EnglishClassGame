@@ -6,6 +6,9 @@ using TMPro;
 
 public class Opening : MonoBehaviour
 {
+    AudioSource bgm;
+    public AudioClip audio;
+
     public Sprite backSprite;
     Button ruleButton;
     Button playButton;
@@ -22,6 +25,10 @@ public class Opening : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bgm = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+        bgm.clip = audio;
+        bgm.Play();
+
         GameObject backgroundObject = GameObject.Find("BackGround");
         SpriteRenderer spriteRenderer = backgroundObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = backSprite;
@@ -94,6 +101,14 @@ public class Opening : MonoBehaviour
             textObj.text += c;
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public void RuleButtonClicked()
+    {
+        Debug.Log("Rule button clicked");
+        RoundManager roundManager = FindObjectOfType<RoundManager>();
+        if (roundManager != null)
+            roundManager.current_round = -2;
     }
 
     public void PlayButtonClicked()
