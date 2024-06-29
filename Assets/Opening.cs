@@ -17,24 +17,37 @@ public class Opening : MonoBehaviour
 
     TMP_Text wordLottoText;
 
+    List<GameObject> instantiatedObjects = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(waterPerson, new Vector2(-2.4f, 0.4f), Quaternion.identity);
-        Instantiate(guide, new Vector2(-5.6f, -1f), Quaternion.identity);
-        Instantiate(raccoon1, new Vector2(-1.8f, -1f), Quaternion.identity);
-        Instantiate(raccoon2, new Vector2(1.6f, -1f), Quaternion.identity);
-        Instantiate(raccoon3, new Vector2(5.8f, -1.1f), Quaternion.identity);
+        Debug.Log("Opening object started");
+
+        instantiatedObjects.Add(Instantiate(waterPerson, new Vector2(-2.4f, 0.4f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(guide, new Vector2(-5.6f, -1f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(raccoon1, new Vector2(-1.8f, -1f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(raccoon2, new Vector2(1.6f, -1f), Quaternion.identity));
+        instantiatedObjects.Add(Instantiate(raccoon3, new Vector2(5.8f, -1.1f), Quaternion.identity));
+
+        //Instantiate(waterPerson, new Vector2(-2.4f, 0.4f), Quaternion.identity);
+        //Instantiate(guide, new Vector2(-5.6f, -1f), Quaternion.identity);
+        //Instantiate(raccoon1, new Vector2(-1.8f, -1f), Quaternion.identity);
+        //Instantiate(raccoon2, new Vector2(1.6f, -1f), Quaternion.identity);
+        //Instantiate(raccoon3, new Vector2(5.8f, -1.1f), Quaternion.identity);
 
         // create & move apple man
         GameObject appleManInstance = Instantiate(appleMan, new Vector2(-10f, 0f), Quaternion.identity);
+        instantiatedObjects.Add(appleManInstance);
         StartCoroutine(MoveObject(appleManInstance, new Vector2(-7.5f, 0f), 2f));
 
         // create & move black man
         GameObject blackManInstance = Instantiate(blackMan, new Vector2(10f, 0f), Quaternion.identity);
+        instantiatedObjects.Add(blackManInstance);
         StartCoroutine(MoveObject(blackManInstance, new Vector2(7.5f, 0f), 2f));
 
         GameObject logoInstance = Instantiate(logo, new Vector2(0f, 7.5f), Quaternion.identity);
+        instantiatedObjects.Add(logoInstance);
         StartCoroutine(MoveObject(logoInstance, new Vector2(0f, 2.5f), 2f));
 
         //Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -73,7 +86,25 @@ public class Opening : MonoBehaviour
         foreach(char c in displayText)
         {
             textObj.text += c;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public void PlayButtonClicked()
+    {
+        Debug.Log("Play button clicked");
+        RoundManager roundManager = FindObjectOfType<RoundManager>();
+        if (roundManager != null)
+            roundManager.current_round = 1;
+    }
+
+    private void OnDestroy()
+    {
+        foreach(GameObject obj in instantiatedObjects)
+        {
+            if (obj != null)
+                Destroy(obj);
+        }
+        instantiatedObjects.Clear();
     }
 }
