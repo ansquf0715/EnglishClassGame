@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff49b817196867f42b821f5226de88eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: acdf9f4898c01974aaab7aaf1f22d687, type: 3}
+  bgmAudio: {fileID: 8300000, guid: acdf9f4898c01974aaab7aaf1f22d687, type: 3}
   backSprite: {fileID: 21300000, guid: 894d45f4bc33e6340829e49c37cb59ed, type: 3}
   backObjects:
   - {fileID: 7267495214888348811, guid: 47fa6413a49639740b6e6e85eb289644, type: 3}

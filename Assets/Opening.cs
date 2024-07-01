@@ -7,7 +7,7 @@ using TMPro;
 public class Opening : MonoBehaviour
 {
     AudioSource bgm;
-    public AudioClip audio;
+    public AudioClip bgmAudio;
 
     public Sprite backSprite;
     Button ruleButton;
@@ -26,7 +26,7 @@ public class Opening : MonoBehaviour
     void Start()
     {
         bgm = GameObject.Find("Audio Source").GetComponent<AudioSource>();
-        bgm.clip = audio;
+        bgm.clip = bgmAudio;
         bgm.Play();
 
         GameObject backgroundObject = GameObject.Find("BackGround");
