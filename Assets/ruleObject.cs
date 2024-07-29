@@ -12,8 +12,8 @@ public class ruleObject : MonoBehaviour
     public GameObject textPrefab;
     public GameObject numberPrefab;
     public Transform parentTransform;
-    GameObject ruleText;
-    TMP_Text ruleTextComponent;
+    //GameObject ruleText;
+    TMP_Text ruleText;
 
     Button nextButton;
 
@@ -24,9 +24,9 @@ public class ruleObject : MonoBehaviour
 
     List<string> ruleSpeech = new List<string>();
 
-    int rulePage = 0;
+    int currentPage = 0;
 
-    bool[] opened = new bool[6];
+    //bool[] opened = new bool[6];
 
     // Start is called before the first frame update
     void Start()
@@ -45,30 +45,43 @@ public class ruleObject : MonoBehaviour
             new Vector2(-1.8f, 2.6f), 1.5f));
 
         setRuleText();
-        ruleText = Instantiate(textPrefab, parentTransform);
-        ruleTextComponent = ruleText.GetComponent<TMP_Text>();
+        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        //ruleText = Instantiate(textPrefab, parentTransform);
+        //ruleTextComponent = ruleText.GetComponent<TMP_Text>();
+        ruleText = GameObject.Find("RuleText").GetComponent<TMP_Text>();
+        Debug.Log("rulet Text = " + ruleText);
+        ruleText.text = "";
+
         Debug.Log("rule text" + ruleText);
 
-        rulePage = 1;
-        for (int i = 0; i < opened.Length; i++)
-            opened[i] = false;
-        opened[0] = true;
-        opened[1] = true;
+        currentPage = 1;
+        //for (int i = 0; i < opened.Length; i++)
+        //    opened[i] = false;
+        //opened[0] = true;
+        //opened[1] = true;
+
+        foreach (Transform child in canvas.transform)
+        {
+            Button button = child.GetComponent<Button>();
+            if (child.name == "Next")
+                nextButton = button;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(rulePage == 1)
+        if(currentPage == 1)
         {
             rulePage1();
             //rulePage = -1;
         }
-        else if(rulePage == 2)
+        else if(currentPage == 2)
         {
             rulePage2();
         }
-        else if(rulePage == 3)
+        else if(currentPage == 3)
         {
             rulePage3();
         }
@@ -99,49 +112,41 @@ public class ruleObject : MonoBehaviour
         ruleSpeech.Add("Let's go!");
     }
 
-    IEnumerator TypeText(TMP_Text textObj, string textToType)
+    IEnumerator TypeText(string textToType)
     {
-        textObj.text = "";
+        ruleText.text = "";
         yield return new WaitForSeconds(1f);
 
         string displayText = textToType;
         foreach(char c in displayText)
         {
-            textObj.text += c;
+            ruleText.text += c;
             yield return new WaitForSeconds(0.2f);
         }
     }
 
-    public void nextButtonClicked()
-    {
-        for(int i=0; i<opened.Length; i++)
-        {
-            if(!opened[i])
-            {
-                rulePage = i;
-                Debug.Log("rule page" + rulePage);
-                opened[i] = true;
-                break;
-            }
-        }
-    }
+    //public void nextButtonClicked()
+    //{
+    //    for(int i=0; i<opened.Length; i++)
+    //    {
+    //        if(!opened[i])
+    //        {
+    //            currentPage = i;
+    //            Debug.Log("rule page" + currentPage);
+    //            opened[i] = true;
+    //            break;
+    //        }
+    //    }
+    //}
 
     void rulePage1()
     {
-        Debug.Log("여기 되나");
-
-        StartCoroutine(TypeText(ruleTextComponent, ruleSpeech[0]));
+        StartCoroutine(TypeText(ruleSpeech[0]));
         spawnNumberGrid(3, 3);
-        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        foreach (Transform child in canvas.transform)
-        {
-            Button button = child.GetComponent<Button>();
-            if (child.name == "Next")
-                nextButton = button;
-        }
         nextButton.gameObject.SetActive(true);
-        rulePage = -1;
+        
 
+        currentPage = -1;
     }
 
     void spawnNumberGrid(int rows, int columns)
@@ -185,9 +190,9 @@ public class ruleObject : MonoBehaviour
     {
         //ruleTextComponent.text = "";
         Debug.Log("rule page 2");
-        StartCoroutine(TypeText(ruleTextComponent, ruleSpeech[1]));
+        StartCoroutine(TypeText(ruleSpeech[1]));
         StartCoroutine(RemoveRandomObjects());
-        rulePage = -1;
+        currentPage = -1;
     }
 
     IEnumerator RemoveRandomObjects()
@@ -206,7 +211,7 @@ public class ruleObject : MonoBehaviour
     void rulePage3()
     {
         clearScreen();
-        rulePage = -1;
+        currentPage = -1;
     }
 
     void clearScreen()
