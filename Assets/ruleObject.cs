@@ -24,7 +24,8 @@ public class ruleObject : MonoBehaviour
 
     List<string> ruleSpeech = new List<string>();
 
-    int currentPage = 0;
+    int rulePage;
+    bool isProcessed = false;
 
     //bool[] opened = new bool[6];
 
@@ -46,19 +47,13 @@ public class ruleObject : MonoBehaviour
 
         setRuleText();
         Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        //ruleText = Instantiate(textPrefab, parentTransform);
-        //ruleTextComponent = ruleText.GetComponent<TMP_Text>();
         ruleText = GameObject.Find("RuleText").GetComponent<TMP_Text>();
         Debug.Log("rulet Text = " + ruleText);
         ruleText.text = "";
 
         Debug.Log("rule text" + ruleText);
 
-        currentPage = 1;
-        //for (int i = 0; i < opened.Length; i++)
-        //    opened[i] = false;
-        //opened[0] = true;
-        //opened[1] = true;
+        rulePage = 1;
 
         foreach (Transform child in canvas.transform)
         {
@@ -67,23 +62,31 @@ public class ruleObject : MonoBehaviour
                 nextButton = button;
         }
 
+        ProcessRulePage();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentPage == 1)
+
+    }
+
+    void ProcessRulePage()
+    {
+        Debug.Log("process rule page");
+        isProcessed = false;
+        switch (rulePage)
         {
-            rulePage1();
-            //rulePage = -1;
-        }
-        else if(currentPage == 2)
-        {
-            rulePage2();
-        }
-        else if(currentPage == 3)
-        {
-            rulePage3();
+            case 1:
+                rulePage1();
+                break;
+            case 2:
+                Debug.Log("case 2");
+                rulePage2();
+                break;
+            default:
+                Debug.Log("에러" + rulePage);
+                break;
         }
     }
 
@@ -92,9 +95,9 @@ public class ruleObject : MonoBehaviour
         Vector2 startPosition = obj.transform.position;
         float elapsedTime = 0f;
 
-        while(elapsedTime < duration)
+        while (elapsedTime < duration)
         {
-            obj.transform.position = Vector2.Lerp(startPosition, targetPosition, elapsedTime/duration);
+            obj.transform.position = Vector2.Lerp(startPosition, targetPosition, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -118,35 +121,38 @@ public class ruleObject : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         string displayText = textToType;
-        foreach(char c in displayText)
+        foreach (char c in displayText)
         {
             ruleText.text += c;
             yield return new WaitForSeconds(0.2f);
         }
+
+        isProcessed = true;
     }
 
-    //public void nextButtonClicked()
-    //{
-    //    for(int i=0; i<opened.Length; i++)
-    //    {
-    //        if(!opened[i])
-    //        {
-    //            currentPage = i;
-    //            Debug.Log("rule page" + currentPage);
-    //            opened[i] = true;
-    //            break;
-    //        }
-    //    }
-    //}
+    public void nextButtonClicked()
+    {
+        //if(!isProcessed)
+        //{
+        //    return;
+        //}
+        StopAllCoroutines();
+
+        Debug.Log("rule page 현재" + rulePage);
+
+        rulePage++;
+        Debug.Log("rule page" + rulePage);
+
+        Debug.Log("rule page ++ 된 후" + rulePage);
+        ProcessRulePage();
+    }
 
     void rulePage1()
     {
+        isProcessed = false;
         StartCoroutine(TypeText(ruleSpeech[0]));
         spawnNumberGrid(3, 3);
         nextButton.gameObject.SetActive(true);
-        
-
-        currentPage = -1;
     }
 
     void spawnNumberGrid(int rows, int columns)
@@ -159,9 +165,9 @@ public class ruleObject : MonoBehaviour
 
         Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
-        for (int i=0; i<rows; i++)
+        for (int i = 0; i < rows; i++)
         {
-            for(int j=0; j<columns; j++)
+            for (int j = 0; j < columns; j++)
             {
                 Vector2 position = startPos + new Vector2(j * columnSpacing, -i * rowSpacing);
                 GameObject boxObject = Instantiate(backObjects[2], position, Quaternion.identity);
@@ -188,16 +194,17 @@ public class ruleObject : MonoBehaviour
 
     void rulePage2()
     {
-        //ruleTextComponent.text = "";
-        Debug.Log("rule page 2");
+        Debug.Log("나는 2번 화면이다");
+        //rule text가 null이여서 실행이 안된이슈 해결
+        //ruleText.text = "";
+        isProcessed = false;
         StartCoroutine(TypeText(ruleSpeech[1]));
         StartCoroutine(RemoveRandomObjects());
-        currentPage = -1;
     }
 
     IEnumerator RemoveRandomObjects()
     {
-        for (int i=0; i<6; i++)
+        for (int i = 0; i < 6; i++)
         {
             int randomIndex = Random.Range(0, boxObjects.Count);
             Debug.Log("random Index" + randomIndex);
@@ -206,29 +213,31 @@ public class ruleObject : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
         }
+
+        isProcessed = true;
     }
 
     void rulePage3()
     {
-        clearScreen();
-        currentPage = -1;
+        isProcessed = true;
+        //clearScreen();
     }
 
     void clearScreen()
     {
-        for(int i=2; i<instantiatedObjects.Count; i++)
+        for (int i = 2; i < instantiatedObjects.Count; i++)
         {
             Destroy(instantiatedObjects[i]);
         }
         instantiatedObjects.RemoveRange(2, instantiatedObjects.Count - 2);
 
-        foreach(GameObject obj in boxObjects)
+        foreach (GameObject obj in boxObjects)
         {
             Destroy(obj);
         }
         boxObjects.Clear();
 
-        foreach(GameObject obj in textObjects)
+        foreach (GameObject obj in textObjects)
         {
             Destroy(obj);
         }
