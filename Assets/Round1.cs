@@ -23,6 +23,7 @@ public class Round1 : MonoBehaviour
     GameObject timer;
     Slider slider;
     GameObject clock;
+    Button showButton;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +103,7 @@ public class Round1 : MonoBehaviour
         timer.SetActive(true);
 
         clock = Instantiate(backObjects[1],
-            new Vector2(4.25f, 4.25f), Quaternion.identity);
+            new Vector2(3.8f, 4.25f), Quaternion.identity);
         instantiatedObjects.Add(clock);
 
         slider = timer.GetComponent<Slider>();
@@ -128,8 +129,16 @@ public class Round1 : MonoBehaviour
 
     void OntimerEnd()
     {
-        Debug.Log("timer is over");
         StartCoroutine(ShakeClock(1f));
+        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        foreach (Transform child in canvas.transform)
+        {
+            Button button = child.GetComponent<Button>();
+            if (child.name == "Show")
+                showButton = button;
+        }
+        showButton.gameObject.SetActive(true);
+        showButton.onClick.AddListener(showButtonClicked);
     }
 
     IEnumerator ShakeClock(float duration)
@@ -149,5 +158,32 @@ public class Round1 : MonoBehaviour
         }
 
         clock.transform.rotation = originalRot;
+    }
+
+    void showButtonClicked()
+    {
+        Debug.Log("remove Words is called");
+        StartCoroutine(RemoveRandomObjects());
+    }
+
+    IEnumerator RemoveRandomObjects()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (boxObjects.Count == 0 || textObjects.Count == 0)
+            {
+                break;
+            }
+
+            int randomIndex = Random.Range(0, boxObjects.Count);
+
+            Destroy(boxObjects[randomIndex]);
+            boxObjects.RemoveAt(randomIndex);
+
+            Destroy(textObjects[randomIndex]);
+            textObjects.RemoveAt(randomIndex);
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
