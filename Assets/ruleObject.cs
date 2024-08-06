@@ -23,8 +23,8 @@ public class ruleObject : MonoBehaviour
     public List<GameObject> fruits = new List<GameObject>();
 
     List<GameObject> instantiatedObjects = new List<GameObject>();
-    public List<GameObject> boxObjects = new List<GameObject>();
-    public List<GameObject> textObjects = new List<GameObject>();
+    List<GameObject> boxObjects = new List<GameObject>();
+    List<GameObject> textObjects = new List<GameObject>();
 
     List<string> ruleSpeech = new List<string>();
 

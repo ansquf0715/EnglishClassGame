@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         List<Dictionary<string, object>> data = CSVReader.Read("words");
 
-        Debug.Log("Test CSV Reader : " + data.Count);
+        //Debug.Log("Test CSV Reader : " + data.Count);
 
         foreach(var row in data)
         {
@@ -28,14 +28,28 @@ public class GameManager : MonoBehaviour
 
         distributeWordsIntoRounds();
 
-        foreach(var round in wordsForRounds)
-            Debug.Log("Round " + round.Key + " words: " + string.Join(", ", round.Value));
+        //foreach(var round in wordsForRounds)
+        //    Debug.Log("Round " + round.Key + " words: " + string.Join(", ", round.Value));
+    
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public List<string> getRoundWords(int round)
+    {
+        //return new List<string>(wordsForRounds[round]);
+        if(wordsForRounds.ContainsKey(round))
+        {
+            return new List<string>(wordsForRounds[round]);
+        }
+        else
+        {
+            return new List<string>();
+        }
     }
 
     void distributeWordsIntoRounds()

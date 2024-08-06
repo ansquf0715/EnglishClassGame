@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba39b3bf40cfc3f48be46301fa2b5383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backGround: {fileID: 21300000, guid: 0187cafe724f4be4396134f8b8cb0654, type: 3}
+  wordPrefab: {fileID: 2324554217907608872, guid: affa2ec5e617b98478f4a06b5eede0fa, type: 3}
+  backObjects:
+  - {fileID: 1753541259558003152, guid: bf5c820f52dd83b4090a0418c3e608f5, type: 3}
