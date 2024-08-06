@@ -48,3 +48,4 @@ MonoBehaviour:
   wordPrefab: {fileID: 2324554217907608872, guid: affa2ec5e617b98478f4a06b5eede0fa, type: 3}
   backObjects:
   - {fileID: 1753541259558003152, guid: bf5c820f52dd83b4090a0418c3e608f5, type: 3}
+  - {fileID: 8842325825611429087, guid: 2cb0d0517cabf7345893359639cf0aab, type: 3}

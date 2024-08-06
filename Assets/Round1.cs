@@ -10,7 +10,7 @@ public class Round1 : MonoBehaviour
     TMP_Text roundText;
     Image roundBack;
 
-    public List<string> words = new List<string>();
+    List<string> words = new List<string>();
 
     public GameObject wordPrefab;
     public List<GameObject> backObjects = new List<GameObject>();
@@ -18,6 +18,12 @@ public class Round1 : MonoBehaviour
     List<GameObject> instantiatedObjects = new List<GameObject>();
     List<GameObject> boxObjects = new List<GameObject>();
     List<GameObject> textObjects = new List<GameObject>();
+
+    public int time;
+    GameObject timer;
+    Slider slider;
+    GameObject clock;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +44,10 @@ public class Round1 : MonoBehaviour
         //Debug.Log("words" + words.Count);
 
         spawnNumberGrid(3, 3);
+
+        if (time <= 0)
+            time = 5;
+        setTimer(time);
     }
 
     // Update is called once per frame
@@ -48,7 +58,7 @@ public class Round1 : MonoBehaviour
 
     void spawnNumberGrid(int rows, int columns)
     {
-
+          
         Debug.Log("spawn number grid is called");
         float columnSpacing = 6f;
         float rowSpacing = 2.8f;
@@ -73,7 +83,6 @@ public class Round1 : MonoBehaviour
                     screenPosition, null, out localCanvasPos);
 
                 GameObject textObject = Instantiate(wordPrefab.gameObject, canvas.transform);
-                //textObject.GetComponent<TMP_Text>().text = counter.ToString();
                 textObject.GetComponent<TMP_Text>().text = words[counter-1];
                 RectTransform textRect = textObject.GetComponent<RectTransform>();
                 textRect.anchoredPosition = localCanvasPos;
@@ -84,5 +93,61 @@ public class Round1 : MonoBehaviour
                 textObjects.Add(textObject);
             }
         }
+    }
+
+    void setTimer(int time)
+    {
+        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        timer = canvas.transform.Find("Timer").gameObject;
+        timer.SetActive(true);
+
+        clock = Instantiate(backObjects[1],
+            new Vector2(4.25f, 4.25f), Quaternion.identity);
+        instantiatedObjects.Add(clock);
+
+        slider = timer.GetComponent<Slider>();
+        slider.maxValue = time;
+        slider.value = 0f;
+
+        StartCoroutine(UpdateTime(time));
+    }
+
+    IEnumerator UpdateTime(int duration)
+    {
+        Debug.Log("update time");
+        float timePerSecond = duration / (float)duration;
+        for(int i=0; i<duration; i++)
+        {
+            slider.value += 1;
+            yield return new WaitForSeconds(1f);
+        }
+
+        slider.value = slider.maxValue;
+        OntimerEnd();
+    }
+
+    void OntimerEnd()
+    {
+        Debug.Log("timer is over");
+        StartCoroutine(ShakeClock(1f));
+    }
+
+    IEnumerator ShakeClock(float duration)
+    {
+        Quaternion originalRot = clock.transform.rotation;
+        float elapsedTime = 0f;
+        float shakeAmount = 10f;
+
+        while(elapsedTime < duration)
+        {
+            float angle = Random.Range(-shakeAmount, shakeAmount);
+            clock.transform.rotation =
+                originalRot * Quaternion.Euler(0, 0, angle);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        clock.transform.rotation = originalRot;
     }
 }
