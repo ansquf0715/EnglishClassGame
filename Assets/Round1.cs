@@ -14,7 +14,7 @@ public class Round1 : MonoBehaviour
 
     public GameObject wordPrefab;
     public List<GameObject> backObjects = new List<GameObject>();
-    
+
     List<GameObject> instantiatedObjects = new List<GameObject>();
     List<GameObject> boxObjects = new List<GameObject>();
     List<GameObject> textObjects = new List<GameObject>();
@@ -54,12 +54,12 @@ public class Round1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void spawnNumberGrid(int rows, int columns)
     {
-          
+
         Debug.Log("spawn number grid is called");
         float columnSpacing = 6f;
         float rowSpacing = 2.8f;
@@ -84,7 +84,7 @@ public class Round1 : MonoBehaviour
                     screenPosition, null, out localCanvasPos);
 
                 GameObject textObject = Instantiate(wordPrefab.gameObject, canvas.transform);
-                textObject.GetComponent<TMP_Text>().text = words[counter-1];
+                textObject.GetComponent<TMP_Text>().text = words[counter - 1];
                 RectTransform textRect = textObject.GetComponent<RectTransform>();
                 textRect.anchoredPosition = localCanvasPos;
 
@@ -117,7 +117,7 @@ public class Round1 : MonoBehaviour
     {
         Debug.Log("update time");
         float timePerSecond = duration / (float)duration;
-        for(int i=0; i<duration; i++)
+        for (int i = 0; i < duration; i++)
         {
             slider.value += 1;
             yield return new WaitForSeconds(1f);
@@ -147,7 +147,7 @@ public class Round1 : MonoBehaviour
         float elapsedTime = 0f;
         float shakeAmount = 10f;
 
-        while(elapsedTime < duration)
+        while (elapsedTime < duration)
         {
             float angle = Random.Range(-shakeAmount, shakeAmount);
             clock.transform.rotation =
