@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3225600819090021509
+--- !u!1 &3417307292787864247
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9077091345054852185}
-  - component: {fileID: 5989618444463323240}
+  - component: {fileID: 2608325592152655015}
+  - component: {fileID: 1550433989548952277}
   m_Layer: 0
-  m_Name: Round1Object
+  m_Name: Round2Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9077091345054852185
+--- !u!4 &2608325592152655015
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225600819090021509}
+  m_GameObject: {fileID: 3417307292787864247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 961.0497, y: 687.18677, z: -12.577159}
+  m_LocalPosition: {x: 0.4860181, y: 1.9810531, z: -1.5786933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5989618444463323240
+--- !u!114 &1550433989548952277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225600819090021509}
+  m_GameObject: {fileID: 3417307292787864247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba39b3bf40cfc3f48be46301fa2b5383, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fbb7a9b02ae2c4499ac00af48fca89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
-  backGround: {fileID: 21300000, guid: 0187cafe724f4be4396134f8b8cb0654, type: 3}
-  wordPrefab: {fileID: 2324554217907608872, guid: affa2ec5e617b98478f4a06b5eede0fa, type: 3}
-  wordBack: {fileID: 1753541259558003152, guid: bf5c820f52dd83b4090a0418c3e608f5, type: 3}
-  round1clock: {fileID: 8842325825611429087, guid: 2cb0d0517cabf7345893359639cf0aab, type: 3}

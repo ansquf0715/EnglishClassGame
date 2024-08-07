@@ -14,10 +14,21 @@ public abstract class Round : MonoBehaviour
     protected Slider slider;
     protected GameObject clock;
 
+    Button showButton;
+    Button nextRoundButton;
+
+    public List<GameObject> boxObjects = new List<GameObject>();
+    public List<GameObject> textObjects = new List<GameObject>();
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
         SetUpRound();
+        words = GetWords();
+        ChangeBackGround();
+        ChangeRoundText();
+        SpawnGrid();
+        SetTimer(time > 0 ? time : 5);
     }
 
     protected abstract void SetUpRound();
@@ -75,29 +86,32 @@ public abstract class Round : MonoBehaviour
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect,
                     screenPosition, null, out Vector2 localCanvasPos);
 
-                GameObject textObject = Instantiate(GetWordPrefab(), canvas.transform);
+                GameObject textObject = Instantiate(GetWordPrefab().gameObject, canvas.transform);
                 textObject.GetComponent<TMP_Text>().text = words[counter - 1];
                 RectTransform textRect = textObject.GetComponent<RectTransform>();
                 textRect.anchoredPosition = localCanvasPos;
-
+                
                 counter++;
+
+                boxObjects.Add(boxObject);
+                textObjects.Add(textObject);
             }
         }
     }
 
-    void SetTimer(int duration)
+    void SetTimer(int time)
     {
         Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         timer = canvas.transform.Find("Timer").gameObject;
-        timer.SetActive(false);
+        timer.SetActive(true);
 
-        clock = Instantiate(GetClock(), new Vector2(4.25f, 4.25f), Quaternion.identity);
+        clock = Instantiate(GetClock(), new Vector2(3.85f, 4.25f), Quaternion.identity);
 
         slider = timer.GetComponent<Slider>();
-        slider.maxValue = duration;
+        slider.maxValue = time;
         slider.value = 0f;
 
-        
+        StartCoroutine(UpdateTimer(time));
     }
 
     IEnumerator UpdateTimer(int duration)
@@ -133,11 +147,92 @@ public abstract class Round : MonoBehaviour
         }
 
         clock.transform.rotation = originalRot;
+        ActivateShowButton();
     }
 
     void ActivateShowButton()
     {
-        GameObject showButton = GameObject.Find("ShowButton");
-        showButton.SetActive(true);
+        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        foreach(Transform child in canvas.transform)
+        {
+            Button button = child.GetComponent<Button>();
+            if (child.name == "Show")
+                showButton = button;
+        }
+        showButton.gameObject.SetActive(true);
+        showButton.onClick.AddListener(showButtonclicked);
+    }
+
+    void showButtonclicked()
+    {
+        Debug.Log("remove words is called");
+        StartCoroutine(RemoveRandomObjects());
+    }
+
+    IEnumerator RemoveRandomObjects()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (boxObjects.Count == 0 || textObjects.Count == 0)
+            {
+                break;
+            }
+
+            int randomIndex = Random.Range(0, boxObjects.Count);
+
+            Destroy(boxObjects[randomIndex]);
+            boxObjects.RemoveAt(randomIndex);
+
+            Destroy(textObjects[randomIndex]);
+            textObjects.RemoveAt(randomIndex);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        ActivateNextButton();
+    }
+
+    void ActivateNextButton()
+    {
+        showButton.gameObject.SetActive(false);
+
+        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        foreach (Transform child in canvas.transform)
+        {
+            Button button = child.GetComponent<Button>();
+            if (child.name == "NextRound")
+                nextRoundButton = button;
+        }
+        nextRoundButton.gameObject.SetActive(true);
+        //showButton.onClick.AddListener(showButtonclicked);
+        nextRoundButton.onClick.AddListener(NextRoundButtonClicked);
+    }
+
+    void NextRoundButtonClicked()
+    {
+        Debug.Log("Next round button clicked called");
+        ClearObjects();
+        RoundManager roundManager = FindObjectOfType<RoundManager>();
+        roundManager.changeCurrentRound(GetRoundNumber() + 1);
+    }
+
+    void ClearObjects()
+    {
+        foreach (var obj in boxObjects)
+        {
+            Destroy(obj);
+        }
+        boxObjects.Clear();
+
+        foreach (var obj in textObjects)
+        {
+            Destroy(obj);
+        }
+        textObjects.Clear();
+
+        Destroy(clock);
+
+        nextRoundButton.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
     }
 }
