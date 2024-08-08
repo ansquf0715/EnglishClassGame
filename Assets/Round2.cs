@@ -2,17 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Round2 : MonoBehaviour
+public class Round2 : Round
 {
-    // Start is called before the first frame update
-    void Start()
+    int currentRound;
+    public Sprite backGround;
+    public GameObject wordPrefab;
+    public GameObject wordBack;
+    public GameObject round2clock;
+
+    List<string> round2words = new List<string>();
+
+    protected override void SetUpRound()
     {
-        Debug.Log(" round 2 is started");
+        currentRound = 2;
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        round2words = gameManager.getRoundWords(currentRound);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override int GetRoundNumber()
     {
-        
+        return currentRound;
+    }
+
+    protected override List<string> GetWords()
+    {
+        return round2words;
+    }
+
+    protected override Sprite GetBackGround()
+    {
+        return backGround;
+    }
+
+    protected override GameObject GetWordPrefab()
+    {
+        return wordPrefab;
+    }
+
+    protected override GameObject GetClock()
+    {
+        return round2clock;
+    }
+
+    protected override GameObject GetWordBackGroundPrefab()
+    {
+        return wordBack;
     }
 }
