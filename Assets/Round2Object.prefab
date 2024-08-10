@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbb7a9b02ae2c4499ac00af48fca89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 0
+  boxObjects: []
+  textObjects: []
+  backGround: {fileID: 21300000, guid: cd3ff9b231872d44ba5b90cdfab99a0c, type: 3}
+  wordPrefab: {fileID: 2324554217907608872, guid: affa2ec5e617b98478f4a06b5eede0fa, type: 3}
+  wordBack: {fileID: 3788114035485802710, guid: 849f36c490b091a4889ace3aeced0cef, type: 3}
+  round2clock: {fileID: 8842325825611429087, guid: 2cb0d0517cabf7345893359639cf0aab, type: 3}
