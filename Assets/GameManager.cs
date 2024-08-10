@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,30 +9,48 @@ public class GameManager : MonoBehaviour
     List<string> wordsList = new List<string>();
     Dictionary<int, List<string>> wordsForRounds = new Dictionary<int, List<string>>();
 
+    List<string> sentencesList = new List<string>();
+    Dictionary<int, List<string>> sentencesForRounds = new Dictionary<int, List<string>>(); 
+
     // Start is called before the first frame update
     void Start()
     {
-        List<Dictionary<string, object>> data = CSVReader.Read("words");
+        List<Dictionary<string, object>> wordData = CSVReader.Read("words");
 
         //Debug.Log("Test CSV Reader : " + data.Count);
 
-        foreach(var row in data)
+        foreach(var row in wordData)
         {
             if (row.ContainsKey("words"))
                 wordsList.Add(row["words"].ToString());
         }
 
+        List<Dictionary<string, object>> sData = CSVReader.Read("sentences");
+
+        foreach (var row in sData)
+        {
+            if (row.ContainsKey("sentence"))
+                sentencesList.Add(row["sentence"].ToString());
+        }
+
+
+        //Debug.Log(" sentence count" + sentencesList.Count);
+        //foreach (var a in sentencesList)
+        //    Debug.Log(a);
+
         //Initialize the rounds dictionary
         for (int i = 1; i <= 3; i++)
             wordsForRounds[i] = new List<string>();
 
-        //Shuffle(wordsList);
-
         distributeWordsIntoRounds();
 
-        //foreach(var round in wordsForRounds)
-        //    Debug.Log("Round " + round.Key + " words: " + string.Join(", ", round.Value));
-    
+        for (int i=4; i<=8; i++)
+        {
+            sentencesForRounds[i] = new List<string>();
+        }
+
+        distributeSentencesIntoRounds();
+
     }
 
     // Update is called once per frame
@@ -97,6 +117,36 @@ public class GameManager : MonoBehaviour
                 roundIndex = roundIndex % 3 + 1;
             }
         }
+    }
+    
+    void distributeSentencesIntoRounds()
+    {
+        int sentencesPerRound = 3;
+        int totalRound = 5;
+        int totalSentencesNeed = sentencesPerRound * totalRound;
+
+        for(int roundIndex = 4; roundIndex <= 8; roundIndex++)
+        {
+            for(int i=0; i<sentencesPerRound; i++)
+            {
+                int sentenceIndex = (roundIndex - 4) * sentencesPerRound + i;
+                if(sentenceIndex < sentencesList.Count)
+                {
+                    sentencesForRounds[roundIndex].Add(sentencesList[sentenceIndex]);
+                }
+                else
+                {
+                    int randomIndex = Random.Range(0, sentencesList.Count);
+                    sentencesForRounds[roundIndex].Add(sentencesList[randomIndex]);
+                }
+            }
+        }
+
+        // 각 라운드에 들어있는 문장 출력
+        //for (int i = 4; i <= 8; i++)
+        //{
+        //    Debug.Log($"Round {i} sentences: {string.Join(", ", sentencesForRounds[i])}");
+        //}
     }
 
     void Shuffle<T>(IList<T> list)
