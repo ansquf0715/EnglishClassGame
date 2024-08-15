@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86534027e6e81f4d8bfbe54fe2a175c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  round4back: {fileID: 21300000, guid: 4c5d4be0a51d2e4499ac316573604420, type: 3}
-  clock: {fileID: 25129850363080707, guid: eca682ca4a1fe7547a5425f481541d2f, type: 3}
   time: 0
-  wordBack: {fileID: 8568037591787683631, guid: 27f2d31a9804e4f439d57f62ded3b7f4, type: 3}
+  boxObjects: []
+  textObjects: []
+  backGround: {fileID: 21300000, guid: 4c5d4be0a51d2e4499ac316573604420, type: 3}
   sentencePrefab: {fileID: 6771296003558424680, guid: 5f8f612ee4ba19e48984b77ea55214cd, type: 3}
+  sentenceBack: {fileID: 8568037591787683631, guid: 27f2d31a9804e4f439d57f62ded3b7f4, type: 3}
+  round4clock: {fileID: 25129850363080707, guid: eca682ca4a1fe7547a5425f481541d2f, type: 3}

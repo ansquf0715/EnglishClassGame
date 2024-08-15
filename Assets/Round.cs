@@ -39,10 +39,10 @@ public abstract class Round : MonoBehaviour
     protected abstract GameObject GetWordBackGroundPrefab();
     protected abstract GameObject GetClock();
 
-    void LoadWords()
-    {
-        words = GetWords();
-    }
+    //void LoadWords()
+    //{
+    //    words = GetWords();
+    //}
 
     void ChangeBackGround()
     {
