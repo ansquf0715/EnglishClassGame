@@ -28,7 +28,7 @@ public abstract class Round : MonoBehaviour
         ChangeBackGround();
         ChangeRoundText();
         SpawnGrid();
-        SetTimer(time > 0 ? time : 5);
+        SetTimer(time > 0 ? time : 3);
     }
 
     protected abstract void SetUpRound();

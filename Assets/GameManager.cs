@@ -119,6 +119,18 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public List<string> getRoundSentence(int round)
+    {
+        if(sentencesForRounds.ContainsKey(round))
+        {
+            return new List<string>(sentencesForRounds[round]);
+        }
+        else
+        {
+            return new List<string>();
+        }
+    }
+
     void distributeSentencesIntoRounds()
     {
         int sentencesPerRound = 3;
@@ -142,7 +154,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // 각 라운드에 들어있는 문장 출력
+        //각 라운드에 들어있는 문장 출력
         //for (int i = 4; i <= 8; i++)
         //{
         //    Debug.Log($"Round {i} sentences: {string.Join(", ", sentencesForRounds[i])}");
