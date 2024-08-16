@@ -51,3 +51,4 @@ MonoBehaviour:
   sentencePrefab: {fileID: 6771296003558424680, guid: 5f8f612ee4ba19e48984b77ea55214cd, type: 3}
   sentenceBack: {fileID: 8568037591787683631, guid: 27f2d31a9804e4f439d57f62ded3b7f4, type: 3}
   round4clock: {fileID: 25129850363080707, guid: eca682ca4a1fe7547a5425f481541d2f, type: 3}
+  dice: {fileID: 4072435082615801822, guid: a6d65b1ad515bea4c82cb25ed8f491e3, type: 3}

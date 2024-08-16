@@ -13,6 +13,7 @@ public abstract class Sentence : MonoBehaviour
     protected GameObject timer;
     protected Slider slider;
     protected GameObject clock;
+    protected GameObject dice;
 
     Button showButton;
     Button nextRoundButton;
@@ -38,6 +39,8 @@ public abstract class Sentence : MonoBehaviour
     protected abstract GameObject GetSentencePrefab();
     protected abstract GameObject GetSentenceBackGroundPrefab();
     protected abstract GameObject GetClock();
+
+    protected abstract GameObject GetDice();
 
 
     void ChangeBackGround()
@@ -78,6 +81,7 @@ public abstract class Sentence : MonoBehaviour
             GameObject textObj = Instantiate(GetSentencePrefab().gameObject, canvas.transform);
             textObj.GetComponent<TMP_Text>().text = sentences[i];
             RectTransform textRect = textObj.GetComponent<RectTransform>();
+
             textRect.anchoredPosition = localCanvasPos;
 
             boxObjects.Add(box);
@@ -133,7 +137,13 @@ public abstract class Sentence : MonoBehaviour
         }
 
         clock.transform.rotation = originalRot;
+        SpawnDice();
         ActivateShowButton();
+    }
+
+    void SpawnDice()
+    {
+        dice = Instantiate(GetDice(), new Vector2(7.0f, 0f), Quaternion.identity);
     }
 
     void ActivateShowButton()
@@ -214,6 +224,7 @@ public abstract class Sentence : MonoBehaviour
         textObjects.Clear();
 
         Destroy(clock);
+        Destroy(dice);
 
         nextRoundButton.gameObject.SetActive(false);
         timer.gameObject.SetActive(false);

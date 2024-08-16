@@ -9,6 +9,7 @@ public class Round4: Sentence
     public GameObject sentencePrefab;
     public GameObject sentenceBack;
     public GameObject round4clock;
+    public GameObject dice;
 
     List<string> round4Sentences = new List<string>();
 
@@ -48,5 +49,10 @@ public class Round4: Sentence
     protected override GameObject GetSentenceBackGroundPrefab()
     {
         return sentenceBack;
+    }
+
+    protected override GameObject GetDice()
+    {
+        return dice;
     }
 }
