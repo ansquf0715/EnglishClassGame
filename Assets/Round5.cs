@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Round4: Sentence
+public class Round5 : Sentence
 {
     int currentRound;
     public Sprite backGround;
     public GameObject sentencePrefab;
     public GameObject sentenceBack;
-    public GameObject round4clock;
-    public GameObject round4dice;
+    public GameObject round5clock;
+    public GameObject round5dice;
 
-    List<string> round4Sentences = new List<string>();
+    List<string> round5Sentences = new List<string>();
 
     protected override void SetUpRound()
     {
-        currentRound = 4;
+        currentRound = 5;
 
         GameManager gameManager = FindObjectOfType<GameManager>();
-        round4Sentences = gameManager.getRoundSentence(currentRound);
+        round5Sentences = gameManager.getRoundSentence(currentRound);
     }
 
     protected override int GetRoundNumber()
@@ -28,9 +28,8 @@ public class Round4: Sentence
 
     protected override List<string> GetSentences()
     {
-        return round4Sentences;
+        return round5Sentences;
     }
-
     protected override Sprite GetBackGround()
     {
         return backGround;
@@ -43,7 +42,7 @@ public class Round4: Sentence
 
     protected override GameObject GetClock()
     {
-        return round4clock;
+        return round5clock;
     }
 
     protected override GameObject GetSentenceBackGroundPrefab()
@@ -53,6 +52,6 @@ public class Round4: Sentence
 
     protected override GameObject GetDice()
     {
-        return round4dice;
+        return round5dice;
     }
 }
