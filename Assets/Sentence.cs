@@ -54,9 +54,18 @@ public abstract class Sentence : MonoBehaviour
     void ChangeRoundText()
     {
         roundText = GameObject.Find("RuleText").GetComponent<TMP_Text>();
-        roundText.text = "ROUND" + GetRoundNumber();
         RectTransform rectTransform = roundText.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-684, 358);
+
+        if (GetRoundNumber() == 8)
+        {
+            roundText.text = "Final Round";
+            rectTransform.anchoredPosition = new Vector2(-650, 358);
+        }
+        else
+        {
+            roundText.text = "ROUND" + GetRoundNumber();
+            rectTransform.anchoredPosition = new Vector2(-684, 358);
+        }
     }
 
     void SpawnSentences()
@@ -228,5 +237,11 @@ public abstract class Sentence : MonoBehaviour
 
         nextRoundButton.gameObject.SetActive(false);
         timer.gameObject.SetActive(false);
+
+        if(GetRoundNumber() == 8)
+        {
+            roundText = GameObject.Find("RuleText").GetComponent<TMP_Text>();
+            roundText.text = "";
+        }
     }
 }

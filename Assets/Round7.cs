@@ -11,14 +11,14 @@ public class Round7 : Sentence
     public GameObject round7clock;
     public GameObject round7dice;
 
-    List<string> round5Sentences = new List<string>();
+    List<string> round7Sentences = new List<string>();
 
     protected override void SetUpRound()
     {
-        currentRound = 6;
+        currentRound = 7;
 
         GameManager gameManager = FindObjectOfType<GameManager>();
-        round5Sentences = gameManager.getRoundSentence(currentRound);
+        round7Sentences = gameManager.getRoundSentence(currentRound);
     }
 
     protected override int GetRoundNumber()
@@ -28,7 +28,7 @@ public class Round7 : Sentence
 
     protected override List<string> GetSentences()
     {
-        return round5Sentences;
+        return round7Sentences;
     }
     protected override Sprite GetBackGround()
     {

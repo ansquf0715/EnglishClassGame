@@ -81,12 +81,12 @@ public class RoundManager : MonoBehaviour
         current_round = -1;
     }
 
-    void StartRound2()
-    {
-        Debug.Log("round 2");
-        DestroyCurrentObject();
-        roundObj.Add(Instantiate(roundPrefabs[2], transform.position, Quaternion.identity));
-        current_round = -2;
-    }
+    //void StartRound2()
+    //{
+    //    Debug.Log("round 2");
+    //    DestroyCurrentObject();
+    //    roundObj.Add(Instantiate(roundPrefabs[2], transform.position, Quaternion.identity));
+    //    current_round = -2;
+    //}
 
 }
