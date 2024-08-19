@@ -58,7 +58,7 @@ public abstract class Sentence : MonoBehaviour
 
         if (GetRoundNumber() == 8)
         {
-            roundText.text = "Final Round";
+            roundText.text = "Final!!!";
             rectTransform.anchoredPosition = new Vector2(-650, 358);
         }
         else
