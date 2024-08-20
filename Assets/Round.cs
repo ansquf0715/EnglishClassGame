@@ -160,6 +160,8 @@ public abstract class Round : MonoBehaviour
                 showButton = button;
         }
         showButton.gameObject.SetActive(true);
+
+        showButton.interactable = true;
         showButton.onClick.AddListener(showButtonclicked);
     }
 
@@ -167,6 +169,7 @@ public abstract class Round : MonoBehaviour
     {
         Debug.Log("remove words is called");
         StartCoroutine(RemoveRandomObjects());
+        showButton.interactable = false;
     }
 
     IEnumerator RemoveRandomObjects()

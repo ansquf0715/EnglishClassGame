@@ -58,7 +58,7 @@ public abstract class Sentence : MonoBehaviour
 
         if (GetRoundNumber() == 8)
         {
-            roundText.text = "Final!!!";
+            roundText.text = "FINAL!!!";
             rectTransform.anchoredPosition = new Vector2(-650, 358);
         }
         else
@@ -147,12 +147,19 @@ public abstract class Sentence : MonoBehaviour
 
         clock.transform.rotation = originalRot;
         SpawnDice();
-        ActivateShowButton();
+        //ActivateShowButton();
     }
 
     void SpawnDice()
     {
         dice = Instantiate(GetDice(), new Vector2(7.0f, 0f), Quaternion.identity);
+        StartCoroutine(delayButton());
+    }
+
+    IEnumerator delayButton()
+    {
+        yield return new WaitForSeconds(1.2f);
+        ActivateShowButton();
     }
 
     void ActivateShowButton()
@@ -165,6 +172,8 @@ public abstract class Sentence : MonoBehaviour
                 showButton = button;
         }
         showButton.gameObject.SetActive(true);
+
+        showButton.interactable = true;
         showButton.onClick.AddListener(showButtonclicked);
     }
 
@@ -172,6 +181,7 @@ public abstract class Sentence : MonoBehaviour
     {
         Debug.Log("remove words is called");
         StartCoroutine(RemoveRandomObjects());
+        showButton.interactable=false;
     }
 
     IEnumerator RemoveRandomObjects()
