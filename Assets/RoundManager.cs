@@ -11,7 +11,10 @@ public class RoundManager : MonoBehaviour
     public List<GameObject> roundPrefabs = new List<GameObject>();
 
     public GameObject rulePrefab;
-    public AudioClip ruleClip;
+    //public AudioClip ruleClip;
+
+    AudioSource bgm;
+    public AudioClip playClip;
 
     List<GameObject> roundObj = new List<GameObject>();
 
@@ -19,6 +22,8 @@ public class RoundManager : MonoBehaviour
     void Start()
     {
         changeRound();
+        bgm = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -79,14 +84,9 @@ public class RoundManager : MonoBehaviour
         DestroyCurrentObject();
         roundObj.Add(Instantiate(roundPrefabs[1], transform.position, Quaternion.identity));
         current_round = -1;
-    }
 
-    //void StartRound2()
-    //{
-    //    Debug.Log("round 2");
-    //    DestroyCurrentObject();
-    //    roundObj.Add(Instantiate(roundPrefabs[2], transform.position, Quaternion.identity));
-    //    current_round = -2;
-    //}
+        bgm.clip = playClip;
+        bgm.Play();
+    }
 
 }

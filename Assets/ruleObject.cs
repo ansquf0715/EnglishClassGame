@@ -22,7 +22,7 @@ public class ruleObject : MonoBehaviour
     public List<GameObject> backObjects = new List<GameObject>();
     public List<GameObject> fruits = new List<GameObject>();
 
-    List<GameObject> instantiatedObjects = new List<GameObject>();
+    public List<GameObject> instantiatedObjects = new List<GameObject>();
     List<GameObject> boxObjects = new List<GameObject>();
     List<GameObject> textObjects = new List<GameObject>();
 
@@ -239,7 +239,7 @@ public class ruleObject : MonoBehaviour
             Destroy(textObjects[randomIndex]);
             textObjects.RemoveAt(randomIndex);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -379,11 +379,11 @@ public class ruleObject : MonoBehaviour
 
     void clearScreen()
     {
-        ruleText.text = "";
+        //ruleText.text = " ";
 
-        for (int i = 0; i < instantiatedObjects.Count; i++)
+        foreach(GameObject obj in instantiatedObjects)
         {
-            Destroy(instantiatedObjects[i]);
+            Destroy(obj);
         }
         instantiatedObjects.Clear();
 
@@ -398,11 +398,12 @@ public class ruleObject : MonoBehaviour
             Destroy(obj);
         }
         textObjects.Clear();
+
+        playButton.gameObject.SetActive (false);
     }
 
     private void OnDestroy()
     {
-        ruleText.gameObject.SetActive(false);
         clearScreen();
     }
 }

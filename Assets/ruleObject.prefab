@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99421df711aabad4bba2f6a5a824dd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmAudio: {fileID: 8300000, guid: 142b90007da8b184eb2627fa51658037, type: 3}
+  bgmAudio: {fileID: 8300000, guid: 1be66b992ee39334c986c08f1be34881, type: 3}
   textPrefab: {fileID: 3652031262232499358, guid: e642fa27449790a4ead920f225ca22bd, type: 3}
   numberPrefab: {fileID: 6374310305617914821, guid: d83c8c51381b69d439418d206e573b38, type: 3}
   parentTransform: {fileID: 0}
@@ -63,3 +63,4 @@ MonoBehaviour:
   - {fileID: 3697011416935326070, guid: 35af87108290bea448cd37d338cd5f8a, type: 3}
   - {fileID: 8486920616970775480, guid: e5f9b88d11ef221429709d02ebf8f6b3, type: 3}
   - {fileID: 9098979493286086771, guid: 12f3f692a6c023548b4fa2374fcfd464, type: 3}
+  instantiatedObjects: []
