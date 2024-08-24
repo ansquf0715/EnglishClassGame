@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 3672031101390409763, guid: 42160c68b8705c144a05b89d97aab764, type: 3}
   - {fileID: 3869954117416504684, guid: a11616b2ea3c7a440b531bd1c5bd5a96, type: 3}
   - {fileID: 5798806447925291407, guid: 966cb341c8e2a484886a8ce7e5541546, type: 3}
+  - {fileID: 5798806447925291407, guid: 966cb341c8e2a484886a8ce7e5541546, type: 3}
   fruits:
   - {fileID: 5489526802371076554, guid: 1288e2a3f0e6ce84da79efdb81eee166, type: 3}
   - {fileID: 3162643830555184328, guid: b55f5af9fc0fd7f4ab9b967fcb793def, type: 3}

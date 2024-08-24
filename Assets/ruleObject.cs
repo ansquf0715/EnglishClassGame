@@ -97,6 +97,7 @@ public class ruleObject : MonoBehaviour
             case 6:
                 rulePage6();
                 break;
+
             default:
                 Debug.Log("에러" + rulePage);
                 break;
@@ -120,11 +121,17 @@ public class ruleObject : MonoBehaviour
 
     void setRuleText()
     {
+        //word
         ruleSpeech.Add("Write 3 words.");
         ruleSpeech.Add("6 words will disappear.");
         ruleSpeech.Add("1 word = 1 fruit");
         ruleSpeech.Add("2 words = 3 fruits");
         ruleSpeech.Add("3 words = 5 fruits");
+        //sentence
+        ruleSpeech.Add("Write 1 sentence.");
+        ruleSpeech.Add("I will roll a dice for fruits. \n한 문장당 과일 몇 개를 가져갈지 주사위를 굴릴게요!");
+        ruleSpeech.Add("2 sentences will disappear.");
+
         ruleSpeech.Add("Let's go!");
     }
 
@@ -347,6 +354,13 @@ public class ruleObject : MonoBehaviour
     }
 
     void rulePage6()
+    {
+        clearBoxObjects();
+        StartCoroutine(TypeText(ruleSpeech[5]));
+
+    }
+
+    void ruleLastPage()
     {
         clearBoxObjects();
         clearScreen();
