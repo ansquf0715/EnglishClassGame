@@ -48,6 +48,7 @@ MonoBehaviour:
   textPrefab: {fileID: 3652031262232499358, guid: e642fa27449790a4ead920f225ca22bd, type: 3}
   numberPrefab: {fileID: 6374310305617914821, guid: d83c8c51381b69d439418d206e573b38, type: 3}
   parentTransform: {fileID: 0}
+  dicePrefab: {fileID: 4072435082615801822, guid: a6d65b1ad515bea4c82cb25ed8f491e3, type: 3}
   backObjects:
   - {fileID: 7300938607116918822, guid: 663a1e2d7dff016488adda0c1a5a852f, type: 3}
   - {fileID: 4301664036601132942, guid: 6e88aeac24339b94b8f216ca6b7aef35, type: 3}
@@ -58,6 +59,7 @@ MonoBehaviour:
   - {fileID: 3869954117416504684, guid: a11616b2ea3c7a440b531bd1c5bd5a96, type: 3}
   - {fileID: 5798806447925291407, guid: 966cb341c8e2a484886a8ce7e5541546, type: 3}
   - {fileID: 5798806447925291407, guid: 966cb341c8e2a484886a8ce7e5541546, type: 3}
+  - {fileID: 411244492933357137, guid: 38c9e9fc0e99d09489e00b8ca04df191, type: 3}
   fruits:
   - {fileID: 5489526802371076554, guid: 1288e2a3f0e6ce84da79efdb81eee166, type: 3}
   - {fileID: 3162643830555184328, guid: b55f5af9fc0fd7f4ab9b967fcb793def, type: 3}

@@ -19,6 +19,9 @@ public class ruleObject : MonoBehaviour
     Button previousButton;
     Button playButton;
 
+    public GameObject dicePrefab;
+    GameObject dice;
+
     public List<GameObject> backObjects = new List<GameObject>();
     public List<GameObject> fruits = new List<GameObject>();
 
@@ -97,7 +100,9 @@ public class ruleObject : MonoBehaviour
             case 6:
                 rulePage6();
                 break;
-
+            case 7:
+                rulePage7();
+                break;
             default:
                 Debug.Log("에러" + rulePage);
                 break;
@@ -129,7 +134,7 @@ public class ruleObject : MonoBehaviour
         ruleSpeech.Add("3 words = 5 fruits");
         //sentence
         ruleSpeech.Add("Write 1 sentence.");
-        ruleSpeech.Add("I will roll a dice for fruits. \n한 문장당 과일 몇 개를 가져갈지 주사위를 굴릴게요!");
+        ruleSpeech.Add("I will roll a dice for fruits.");
         ruleSpeech.Add("2 sentences will disappear.");
 
         ruleSpeech.Add("Let's go!");
@@ -153,7 +158,7 @@ public class ruleObject : MonoBehaviour
     public void nextButtonClicked()
     {
         StopAllCoroutines();
-        if(rulePage < 6)
+        if(rulePage < 10)
         {
             rulePage++;
             ProcessRulePage();
@@ -358,6 +363,39 @@ public class ruleObject : MonoBehaviour
         clearBoxObjects();
         StartCoroutine(TypeText(ruleSpeech[5]));
 
+        Vector2 startPos = new Vector2(-1.3f, 0);
+        float spacing = -2f;
+
+        Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+
+        for(int i=0; i<3; i++)
+        {
+            Vector2 pos = startPos + new Vector2(0, i * spacing);
+            GameObject boxObject = Instantiate(backObjects[9], pos, Quaternion.identity);
+
+            Vector2 screenPos = Camera.main.WorldToScreenPoint(boxObject.transform.position);
+            RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect,
+                screenPos, null, out Vector2 localCanvasPos);
+
+            GameObject textObj = Instantiate(numberPrefab, canvas.transform);
+            textObj.GetComponent<TMP_Text>().text = i.ToString();
+            RectTransform textRect = textObj.GetComponent<RectTransform>();
+
+            textRect.anchoredPosition = localCanvasPos;
+            
+            backObjects.Add(boxObject);
+            textObjects.Add(textObj);
+        }
+    }
+
+    void rulePage7()
+    {
+        Debug.Log("rle page 7");
+        StartCoroutine(TypeText(ruleSpeech[6]));
+        dice = Instantiate(dicePrefab, new Vector2(3.6f, -0.8f), Quaternion.identity);
+        dice.transform.localScale = new Vector2(0.5f, 0.5f);
     }
 
     void ruleLastPage()
