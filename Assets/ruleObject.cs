@@ -103,6 +103,13 @@ public class ruleObject : MonoBehaviour
             case 7:
                 rulePage7();
                 break;
+            case 8:
+                rulePage8();
+                break;
+            case 9:
+                ruleLastPage();
+                break;
+
             default:
                 Debug.Log("에러" + rulePage);
                 break;
@@ -134,7 +141,7 @@ public class ruleObject : MonoBehaviour
         ruleSpeech.Add("3 words = 5 fruits");
         //sentence
         ruleSpeech.Add("Write 1 sentence.");
-        ruleSpeech.Add("I will roll a dice for fruits.");
+        ruleSpeech.Add("I will roll a dice \nfor fruits.");
         ruleSpeech.Add("2 sentences will disappear.");
 
         ruleSpeech.Add("Let's go!");
@@ -298,6 +305,8 @@ public class ruleObject : MonoBehaviour
         textObjects.Clear();
     }
 
+
+
     void rulePage4()
     {
         clearBoxObjects();
@@ -358,6 +367,7 @@ public class ruleObject : MonoBehaviour
         }
     }
 
+
     void rulePage6()
     {
         clearBoxObjects();
@@ -385,17 +395,42 @@ public class ruleObject : MonoBehaviour
 
             textRect.anchoredPosition = localCanvasPos;
             
-            backObjects.Add(boxObject);
+            boxObjects.Add(boxObject);
             textObjects.Add(textObj);
         }
     }
 
     void rulePage7()
     {
-        Debug.Log("rle page 7");
+        RectTransform rectTransform = ruleText.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(-198, 250);
+
         StartCoroutine(TypeText(ruleSpeech[6]));
         dice = Instantiate(dicePrefab, new Vector2(3.6f, -0.8f), Quaternion.identity);
         dice.transform.localScale = new Vector2(0.5f, 0.5f);
+    }
+
+    void rulePage8()
+    {
+        Destroy(dice);
+        StartCoroutine(TypeText(ruleSpeech[7]));
+        StartCoroutine(RemoveRandomSentences());
+    }
+
+    IEnumerator RemoveRandomSentences()
+    {
+        yield return new WaitForSeconds(1f);
+        for(int i=0; i< 2; i++)
+        {
+            int randomIndex = Random.Range(0, boxObjects.Count);
+            Destroy(boxObjects[randomIndex]);
+            boxObjects.RemoveAt(randomIndex);
+
+            Destroy(textObjects[randomIndex]);
+            textObjects.RemoveAt(randomIndex);
+
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     void ruleLastPage()
@@ -407,7 +442,7 @@ public class ruleObject : MonoBehaviour
 
         RectTransform ruleTextRect = ruleText.GetComponent<RectTransform>();
         ruleTextRect.anchoredPosition = new Vector2(0, 130);
-        StartCoroutine(TypeText(ruleSpeech[5]));
+        StartCoroutine(TypeText(ruleSpeech[8]));
 
         //대화창
         instantiatedObjects.Add(Instantiate(backObjects[1],
