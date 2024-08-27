@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<Dictionary<string, object>> wordData = CSVReader.Read("words");
+        //List<Dictionary<string, object>> wordData = CSVReader.Read("words");
+        List<Dictionary<string, object>> wordData = CSVReader.Read("words.csv");
 
         //Debug.Log("Test CSV Reader : " + data.Count);
 
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour
                 wordsList.Add(row["words"].ToString());
         }
 
-        List<Dictionary<string, object>> sData = CSVReader.Read("sentences");
+        //List<Dictionary<string, object>> sData = CSVReader.Read("sentences");
+        List<Dictionary<string, object>> sData = CSVReader.Read("sentences.csv");
 
         foreach (var row in sData)
         {

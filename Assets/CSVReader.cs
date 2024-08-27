@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.IO;
 
 public class CSVReader
 {
@@ -13,9 +14,20 @@ public class CSVReader
     public static List<Dictionary<string, object>> Read(string file)
     {
         var list = new List<Dictionary<string, object>>();
-        TextAsset data = Resources.Load(file) as TextAsset;
+        //TextAsset data = Resources.Load(file) as TextAsset;
 
-        var lines = Regex.Split(data.text, LINE_SPLIT_RE);
+        string path = Path.Combine(Application.streamingAssetsPath, file);
+
+        if(!File.Exists(path))
+        {
+            Debug.LogError("CSV 파일을 찾을 수 없습니다: " + path);
+            return list;
+        }
+
+        string data = File.ReadAllText(path);
+
+        //var lines = Regex.Split(data.text, LINE_SPLIT_RE);
+        var lines = Regex.Split(data, LINE_SPLIT_RE);
 
         if (lines.Length <= 1) return list;
 

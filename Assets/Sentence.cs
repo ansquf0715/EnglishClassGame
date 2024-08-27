@@ -34,15 +34,13 @@ public abstract class Sentence : MonoBehaviour
         star = Resources.Load<GameObject>("°­Á¶ º°");
 
         effectsSource = GameObject.Find("Effect Audio Source").GetComponent<AudioSource>();
-        //bgm.clip = bgmAudio;
-        //bgm.Play();
         
         SetUpRound();
         sentences = GetSentences();
         ChangeBackGround();
         ChangeRoundText();
         SpawnSentences();
-        SetTimer(time > 0 ? time : 3);
+        SetTimer(time > 0 ? time : 20);
 
         effectClips = Resources.LoadAll<AudioClip>("SoundEffects/");
     }
@@ -198,7 +196,6 @@ public abstract class Sentence : MonoBehaviour
 
     void showButtonclicked()
     {
-        Debug.Log("remove words is called");
         StartCoroutine(RemoveRandomObjects());
         showButton.interactable=false;
     }
@@ -310,7 +307,6 @@ public abstract class Sentence : MonoBehaviour
 
     void NextRoundButtonClicked()
     {
-        Debug.Log("Next round button clicked called");
         ClearObjects();
         RoundManager roundManager = FindObjectOfType<RoundManager>();
         roundManager.changeCurrentRound(GetRoundNumber() + 1);

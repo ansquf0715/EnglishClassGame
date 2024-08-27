@@ -150,7 +150,6 @@ public class ruleObject : MonoBehaviour
     IEnumerator TypeText(string textToType)
     {
         ruleText.text = "";
-        //yield return new WaitForSeconds(1f);
         if (rulePage == 1)
             yield return new WaitForSeconds(1f);
 
@@ -170,7 +169,6 @@ public class ruleObject : MonoBehaviour
             rulePage++;
             ProcessRulePage();
         }
-        //Debug.Log("rule page" + rulePage);
     }
 
     public void previousButtonClicked()
@@ -181,7 +179,6 @@ public class ruleObject : MonoBehaviour
             rulePage--;
             ProcessRulePage();
         }
-        //Debug.Log("rule page in previous" + rulePage);
     }
 
     void rulePage1()
@@ -390,7 +387,7 @@ public class ruleObject : MonoBehaviour
                 screenPos, null, out Vector2 localCanvasPos);
 
             GameObject textObj = Instantiate(numberPrefab, canvas.transform);
-            textObj.GetComponent<TMP_Text>().text = i.ToString();
+            textObj.GetComponent<TMP_Text>().text = (i+1).ToString();
             RectTransform textRect = textObj.GetComponent<RectTransform>();
 
             textRect.anchoredPosition = localCanvasPos;
@@ -466,8 +463,6 @@ public class ruleObject : MonoBehaviour
 
     void clearScreen()
     {
-        //ruleText.text = " ";
-
         foreach(GameObject obj in instantiatedObjects)
         {
             Destroy(obj);

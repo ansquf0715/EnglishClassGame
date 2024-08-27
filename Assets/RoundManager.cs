@@ -11,7 +11,6 @@ public class RoundManager : MonoBehaviour
     public List<GameObject> roundPrefabs = new List<GameObject>();
 
     public GameObject rulePrefab;
-    //public AudioClip ruleClip;
 
     AudioSource bgm;
     public AudioClip playClip;

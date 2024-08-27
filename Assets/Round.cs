@@ -38,7 +38,7 @@ public abstract class Round : MonoBehaviour
         ChangeBackGround();
         ChangeRoundText();
         SpawnGrid();
-        SetTimer(time > 0 ? time : 3);
+        SetTimer(time > 0 ? time : 20);
 
         effectClips = Resources.LoadAll<AudioClip>("SoundEffects/");
     }
@@ -51,10 +51,6 @@ public abstract class Round : MonoBehaviour
     protected abstract GameObject GetWordBackGroundPrefab();
     protected abstract GameObject GetClock();
 
-    //void LoadWords()
-    //{
-    //    words = GetWords();
-    //}
 
     void ChangeBackGround()
     {

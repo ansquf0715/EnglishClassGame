@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Setting : MonoBehaviour
 {
-    bool settingOn = false;
     Image SettingPage;
 
     AudioSource bgmAudio;
@@ -21,8 +20,6 @@ public class Setting : MonoBehaviour
         Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
         SettingPage = canvas.transform.Find("SettingPage").GetComponent<Image>();
-        //Canvas settingCanvas = SettingPage.GetComponent<Canvas>();
-        //settingCanvas.sortingOrder = 100;
         
         bgmAudio = GameObject.Find("Audio Source").GetComponent<AudioSource>();
         effectAudio = GameObject.Find("Effect Audio Source").GetComponent<AudioSource>();
@@ -49,7 +46,6 @@ public class Setting : MonoBehaviour
 
     public void SettingButtonClicked()
     {
-        //settingOn = SettingPage.gameObject.activeSelf;
         SettingPage.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
