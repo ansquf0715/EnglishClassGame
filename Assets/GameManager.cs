@@ -15,10 +15,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //List<Dictionary<string, object>> wordData = CSVReader.Read("words");
         List<Dictionary<string, object>> wordData = CSVReader.Read("words.csv");
-
-        //Debug.Log("Test CSV Reader : " + data.Count);
 
         foreach(var row in wordData)
         {
@@ -26,7 +23,6 @@ public class GameManager : MonoBehaviour
                 wordsList.Add(row["words"].ToString());
         }
 
-        //List<Dictionary<string, object>> sData = CSVReader.Read("sentences");
         List<Dictionary<string, object>> sData = CSVReader.Read("sentences.csv");
 
         foreach (var row in sData)
@@ -35,24 +31,13 @@ public class GameManager : MonoBehaviour
                 sentencesList.Add(row["sentence"].ToString());
         }
 
-
-        //Debug.Log(" sentence count" + sentencesList.Count);
-        //foreach (var a in sentencesList)
-        //    Debug.Log(a);
-
-        //Initialize the rounds dictionary
         for (int i = 1; i <= 3; i++)
             wordsForRounds[i] = new List<string>();
-
         distributeWordsIntoRounds();
 
-        for (int i=4; i<=8; i++)
-        {
+        for (int i = 4; i <= 8; i++)
             sentencesForRounds[i] = new List<string>();
-        }
-
         distributeSentencesIntoRounds();
-
     }
 
     // Update is called once per frame
