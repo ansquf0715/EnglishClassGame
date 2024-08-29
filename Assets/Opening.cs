@@ -65,7 +65,6 @@ public class Opening : MonoBehaviour
         instantiatedObjects.Add(logoInstance);
         StartCoroutine(MoveObject(logoInstance, new Vector2(0f, 2.5f), 2f));
 
-        //Debug.Log("word lotto가 없는듯?" + wordLottoText);
         wordLottoText = GameObject.Find("WordLotto").GetComponent<TMP_Text>();
         wordLottoText.text = "";
         wordLottoText.gameObject.SetActive(true);

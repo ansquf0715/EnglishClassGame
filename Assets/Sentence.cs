@@ -301,7 +301,6 @@ public abstract class Sentence : MonoBehaviour
                 nextRoundButton = button;
         }
         nextRoundButton.gameObject.SetActive(true);
-        //showButton.onClick.AddListener(showButtonclicked);
         nextRoundButton.onClick.AddListener(NextRoundButtonClicked);
     }
 
