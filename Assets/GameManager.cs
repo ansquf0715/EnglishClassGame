@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
 
     public List<string> getRoundWords(int round)
     {
-        //return new List<string>(wordsForRounds[round]);
         if(wordsForRounds.ContainsKey(round))
         {
             return new List<string>(wordsForRounds[round]);
@@ -140,12 +139,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        //각 라운드에 들어있는 문장 출력
-        //for (int i = 4; i <= 8; i++)
-        //{
-        //    Debug.Log($"Round {i} sentences: {string.Join(", ", sentencesForRounds[i])}");
-        //}
     }
 
     void Shuffle<T>(IList<T> list)

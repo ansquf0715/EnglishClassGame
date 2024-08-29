@@ -43,7 +43,6 @@ public class RoundManager : MonoBehaviour
 
     public void changeCurrentRound(int roundIndex)
     {
-        Debug.Log("change Current round is called");
         DestroyCurrentObject();
         if (roundIndex < roundPrefabs.Count)
         {
@@ -71,7 +70,6 @@ public class RoundManager : MonoBehaviour
 
     void StartRule()
     {
-        Debug.Log("start Rule");
         DestroyCurrentObject();
         roundObj.Add(Instantiate(rulePrefab, transform.position, Quaternion.identity));
         current_round = -1;
@@ -79,7 +77,6 @@ public class RoundManager : MonoBehaviour
 
     void StartRound1()
     {
-        Debug.Log("round 1");
         DestroyCurrentObject();
         roundObj.Add(Instantiate(roundPrefabs[1], transform.position, Quaternion.identity));
         current_round = -1;

@@ -117,7 +117,6 @@ public class Ending : MonoBehaviour
         roundText = GameObject.Find("RuleText").GetComponent<TMP_Text>();
         RectTransform rectTransform = roundText.GetComponent<RectTransform>();
 
-        //roundText.text = "GOOD JOB!";
         rectTransform.anchoredPosition = new Vector2(0, 160);
         string textToType = "GOOD JOB!";
 
