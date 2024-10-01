@@ -72,6 +72,13 @@ public class Setting : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void teacherButtonClicked()
+    {
+        SettingPage.gameObject.SetActive(false);
+        //teacher page UI 추가하기
+        
+    }
+
     public void settingFinishClicked()
     {
         Time.timeScale = 1;
