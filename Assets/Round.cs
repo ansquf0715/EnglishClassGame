@@ -38,9 +38,12 @@ public abstract class Round : MonoBehaviour
         ChangeBackGround();
         ChangeRoundText();
         SpawnGrid();
-        SetTimer(time > 0 ? time : 20);
-
         effectClips = Resources.LoadAll<AudioClip>("SoundEffects/");
+
+        GameManager gm = FindObjectOfType<GameManager>();
+        SetTimer(gm.time);
+        //SetTimer(time > 0 ? time : 20);
+
     }
 
     protected abstract void SetUpRound();

@@ -6,15 +6,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int time;
+
     List<string> wordsList = new List<string>();
     Dictionary<int, List<string>> wordsForRounds = new Dictionary<int, List<string>>();
 
     List<string> sentencesList = new List<string>();
-    Dictionary<int, List<string>> sentencesForRounds = new Dictionary<int, List<string>>(); 
+    Dictionary<int, List<string>> sentencesForRounds = new Dictionary<int, List<string>>();
+
+    private void Awake()
+    {
+        time = 5;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        //time = 20;
         List<Dictionary<string, object>> wordData = CSVReader.Read("words.csv");
 
         foreach(var row in wordData)

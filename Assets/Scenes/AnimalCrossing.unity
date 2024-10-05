@@ -262,7 +262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &31763391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1658,6 +1658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d8ab32f0b7d0d4082baa4ed7d8f633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teachersPage: {fileID: 0}
+  currentTime: {fileID: 0}
 --- !u!1 &292830552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3477,6 +3479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ec5409fec34b54b8b0e02b4dc853d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 0
 --- !u!1 &846295724
 GameObject:
   m_ObjectHideFlags: 0

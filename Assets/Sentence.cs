@@ -40,7 +40,10 @@ public abstract class Sentence : MonoBehaviour
         ChangeBackGround();
         ChangeRoundText();
         SpawnSentences();
-        SetTimer(time > 0 ? time : 20);
+
+        GameManager gm = FindObjectOfType<GameManager>();
+        SetTimer(gm.time);
+        //SetTimer(time > 0 ? time : 20);
 
         effectClips = Resources.LoadAll<AudioClip>("SoundEffects/");
     }
