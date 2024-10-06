@@ -19,6 +19,9 @@ public class TeacherPage : MonoBehaviour
         teachersPage = canvas.transform.Find("Teacher'sPage").gameObject;
 
         Transform currentTimeTransform = teachersPage.transform.Find("CurrentTime");
+
+
+
         currentTime = currentTimeTransform.GetComponent<TextMeshProUGUI>();
 
         currentTime.text = gm.time.ToString();
