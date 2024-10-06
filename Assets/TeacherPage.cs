@@ -20,11 +20,13 @@ public class TeacherPage : MonoBehaviour
 
         Transform currentTimeTransform = teachersPage.transform.Find("CurrentTime");
 
-
-
         currentTime = currentTimeTransform.GetComponent<TextMeshProUGUI>();
-
         currentTime.text = gm.time.ToString();
+
+        if (teachersPage.activeSelf)
+            Debug.Log("teacher's page true");
+        else
+            Debug.Log("teacher's page false");
     }
 
     // Update is called once per frame
