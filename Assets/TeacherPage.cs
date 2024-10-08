@@ -15,18 +15,18 @@ public class TeacherPage : MonoBehaviour
     {
         GameManager gm = FindObjectOfType<GameManager>();
 
-        GameObject canvas = GameObject.Find("Canvas");
-        teachersPage = canvas.transform.Find("Teacher'sPage").gameObject;
+        //GameObject canvas = GameObject.Find("Canvas");
+        //teachersPage = canvas.transform.Find("Teacher'sPage").gameObject;
 
-        Transform currentTimeTransform = teachersPage.transform.Find("CurrentTime");
+        //Transform currentTimeTransform = teachersPage.transform.Find("CurrentTime");
 
-        currentTime = currentTimeTransform.GetComponent<TextMeshProUGUI>();
-        currentTime.text = gm.time.ToString();
+        //currentTime = currentTimeTransform.GetComponent<TextMeshProUGUI>();
+        //currentTime.text = gm.time.ToString();
 
-        if (teachersPage.activeSelf)
-            Debug.Log("teacher's page true");
-        else
-            Debug.Log("teacher's page false");
+        //if (teachersPage.activeSelf)
+        //    Debug.Log("teacher's page true");
+        //else
+        //    Debug.Log("teacher's page false");
     }
 
     // Update is called once per frame
