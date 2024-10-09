@@ -8,6 +8,8 @@ public class teacher : MonoBehaviour
     TextMeshProUGUI currentTime;
     GameManager gameManager;
 
+    List<string> words;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +29,9 @@ public class teacher : MonoBehaviour
 
     void currentWordsOutput()
     {
-        //gameManager.getAllWords();
-        Debug.Log(gameManager.getAllWords());
+        words = gameManager.getAllWords();
+        for(int i=0; i<words.Count; i++)
+            Debug.Log(words[i]);
     }
 
 }
