@@ -6,6 +6,8 @@ using TMPro;
 public class teacher : MonoBehaviour
 {
     TextMeshProUGUI currentTime;
+    TextMeshProUGUI currentWords;
+
     GameManager gameManager;
 
     List<string> words;
@@ -20,6 +22,9 @@ public class teacher : MonoBehaviour
         Transform currentTimeTransform = this.gameObject.transform.Find("CurrentTime");
         currentTime = currentTimeTransform.GetComponent<TextMeshProUGUI>();
         currentTime.text = gameManager.time.ToString();
+
+        Transform currentWordsTransform = this.gameObject.transform.Find("WordOutput");
+        currentWords = currentWordsTransform.GetComponent<TextMeshProUGUI>();
     }
 
     private void OnEnable()
@@ -31,7 +36,11 @@ public class teacher : MonoBehaviour
     {
         words = gameManager.getAllWords();
         for(int i=0; i<words.Count; i++)
+        {
             Debug.Log(words[i]);
+            currentWords.text += words[i] + "\n";
+        }
+
     }
 
 }

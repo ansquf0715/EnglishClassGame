@@ -14,15 +14,16 @@ public class GameManager : MonoBehaviour
     List<string> sentencesList = new List<string>();
     Dictionary<int, List<string>> sentencesForRounds = new Dictionary<int, List<string>>();
 
-    private void Awake()
-    {
-        time = 5;
-    }
+    //private void Awake()
+    //{
+    //    time = 5;
+    //}
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //time = 20;
+        time = 5;
         List<Dictionary<string, object>> wordData = CSVReader.Read("words.csv");
 
         foreach(var row in wordData)
