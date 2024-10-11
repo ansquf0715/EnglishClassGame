@@ -7,6 +7,7 @@ public class teacher : MonoBehaviour
 {
     TextMeshProUGUI currentTime;
     TextMeshProUGUI currentWords;
+    TextMeshProUGUI currentSentences;
 
     GameManager gameManager;
 
@@ -25,6 +26,10 @@ public class teacher : MonoBehaviour
 
         Transform currentWordsTransform = this.gameObject.transform.Find("WordOutput");
         currentWords = currentWordsTransform.GetComponent<TextMeshProUGUI>();
+
+        Transform currentSentencesTransform = this.gameObject.transform.Find("SentenceOutput");
+        currentSentences = currentSentencesTransform.GetComponent<TextMeshProUGUI>();
+
     }
 
     private void OnEnable()

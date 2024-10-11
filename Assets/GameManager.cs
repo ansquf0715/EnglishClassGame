@@ -118,6 +118,11 @@ public class GameManager : MonoBehaviour
     {
         return wordsList;
     }
+
+    public List<string> getAllSentences()
+    {
+        return sentencesList;
+    }
     
     public List<string> getRoundSentence(int round)
     {
