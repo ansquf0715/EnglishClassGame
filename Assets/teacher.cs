@@ -12,6 +12,7 @@ public class teacher : MonoBehaviour
     GameManager gameManager;
 
     List<string> words;
+    List<string> sentences;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class teacher : MonoBehaviour
     private void OnEnable()
     {
         currentWordsOutput();
+        currentSentencesOutput();
     }
 
     void currentWordsOutput()
@@ -46,6 +48,16 @@ public class teacher : MonoBehaviour
             currentWords.text += words[i] + "\n";
         }
 
+    }
+
+    void currentSentencesOutput()
+    {
+        sentences = gameManager.getAllSentences();
+        for(int i=0; i<sentences.Count; i++)
+        {
+            Debug.Log(sentences[i]);
+            currentSentences.text += sentences[i] + "\n";
+        }
     }
 
 }
