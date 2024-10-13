@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class teacher : MonoBehaviour
 {
     TextMeshProUGUI currentTime;
     TextMeshProUGUI currentWords;
     TextMeshProUGUI currentSentences;
+    TextMeshProUGUI newWords;
+
+    InputField newWordInputField;
 
     GameManager gameManager;
 
@@ -31,12 +35,19 @@ public class teacher : MonoBehaviour
         Transform currentSentencesTransform = this.gameObject.transform.Find("SentenceOutput");
         currentSentences = currentSentencesTransform.GetComponent<TextMeshProUGUI>();
 
+        Transform newWordTransform = this.gameObject.transform.Find("NewWord");
+        newWords = newWordTransform.GetComponent<TextMeshProUGUI>();
+
+        Transform wordInputTransform = this.gameObject.transform.Find("WordInput");
+        newWordInputField = wordInputTransform.GetComponent<InputField>();
+        Debug.Log(newWordInputField);
     }
 
     private void OnEnable()
     {
         currentWordsOutput();
         currentSentencesOutput();
+        newWordInputField.onEndEdit.AddListener(SubmitWord);
     }
 
     void currentWordsOutput()
@@ -44,7 +55,6 @@ public class teacher : MonoBehaviour
         words = gameManager.getAllWords();
         for(int i=0; i<words.Count; i++)
         {
-            Debug.Log(words[i]);
             currentWords.text += words[i] + "\n";
         }
 
@@ -55,9 +65,17 @@ public class teacher : MonoBehaviour
         sentences = gameManager.getAllSentences();
         for(int i=0; i<sentences.Count; i++)
         {
-            Debug.Log(sentences[i]);
             currentSentences.text += sentences[i] + "\n";
         }
     }
 
+    void SubmitWord(string word)
+    {
+        Debug.Log("여기되나");
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            newWords.text = word;
+            newWordInputField.text = "";
+        }
+    }
 }
