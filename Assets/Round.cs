@@ -18,9 +18,9 @@ public abstract class Round : MonoBehaviour
     Button showButton;
     Button nextRoundButton;
 
-    public List<GameObject> boxObjects = new List<GameObject>();
-    public List<GameObject> textObjects = new List<GameObject>();
-    public List<GameObject> stars = new List<GameObject>();
+    List<GameObject> boxObjects = new List<GameObject>();
+    List<GameObject> textObjects = new List<GameObject>();
+    List<GameObject> stars = new List<GameObject>();
 
     AudioSource effectsSource;
     //0: 단어 1:알람 2:주사위
